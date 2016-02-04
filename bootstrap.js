@@ -19,11 +19,14 @@ function loadIntoWindow(win) {
   // 1. get a pointer to the popup
   let popup = win.document.getElementById('PopupAutoCompleteRichResult')
   win.wut.popup = popup;
-  // 2. try adding our hbox to it!
+  // 2. get a pointer to the anonymous content inside it
+  let results = win.document.getAnonymousElementByAttribute(popup, 'anonid', 'richlistbox');
+  // 3. create the hbox
   const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
-  var boxy = document.createElementNS(XUL_NS, "hbox"); // create a new XUL menuitem
-  boxy.setAttribute("label", 'we all, us three, will ride');
-  popup.insertBefore(boxy, popup.firstChild); // note, we insert it below the other hbox in real life
+  var boxy = win.document.createElementNS(XUL_NS, "hbox");
+  boxy.setAttribute("description", "we all, us three, will ride");
+  // 4. insert it between anonymous nodes?
+  results.insertBefore(boxy, results); // note, we insert it below the other hbox in real life
   
   
   // 2. listen to the urlbar for keys
