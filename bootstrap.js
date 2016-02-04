@@ -14,19 +14,25 @@ function loadIntoWindow(win) {
   if (typeof win.wut === 'undefined') {
     win.wut = {};
   }
-  // 0. attach the debugger
-  debugger;
-  // 1. get a pointer to the popup
+  /* all these steps should actually be handled by XBL for us, magically
+    // 1. get a pointer to the popup
+    let popup = win.document.getElementById('PopupAutoCompleteRichResult')
+    win.wut.popup = popup;
+    // 2. get a pointer to the anonymous content inside it
+    let results = win.document.getAnonymousElementByAttribute(popup, 'anonid', 'richlistbox');
+    // 3. create the hbox
+    const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+    var boxy = win.document.createElementNS(XUL_NS, "hbox");
+    boxy.setAttribute("description", "we all, us three, will ride");
+    // 4. insert it between anonymous nodes?
+    results.insertBefore(boxy, results); // note, we insert it below the other hbox in real life
+  */
+
+  // it seems like XBL isn't getting applied.
+  // let's try pulling the node out of the DOM, then reinserting,
+  // to force the binding to be applied.
   let popup = win.document.getElementById('PopupAutoCompleteRichResult')
-  win.wut.popup = popup;
-  // 2. get a pointer to the anonymous content inside it
-  let results = win.document.getAnonymousElementByAttribute(popup, 'anonid', 'richlistbox');
-  // 3. create the hbox
-  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
-  var boxy = win.document.createElementNS(XUL_NS, "hbox");
-  boxy.setAttribute("description", "we all, us three, will ride");
-  // 4. insert it between anonymous nodes?
-  results.insertBefore(boxy, results); // note, we insert it below the other hbox in real life
+  popup.parentElement.replaceChild(popup, popup);
   
   
   // 2. listen to the urlbar for keys
