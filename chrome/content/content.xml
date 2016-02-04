@@ -4,7 +4,7 @@
           xmlns:html="http://www.w3.org/1999/xhtml"
           xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
           xmlns:xbl="http://www.mozilla.org/xbl">
-  <binding id="urlbar-rich-result-popup" extends="chrome://browser/content/urlbarBindings.xml#urlbar-rich-result-popup">
+  <binding id="hboxy-urlbar-rich-result-popup" extends="chrome://browser/content/urlbarBindings.xml#urlbar-rich-result-popup">
     <content ignorekeys="false" level="top" consumeoutsideclicks="false">
       <xul:hbox anonid="ohai"
                 align="center">
@@ -13,26 +13,5 @@
         </xul:description>
       </xul:hbox>
     </content>
-    <implementation>
-      <method name="openAutocompletePopup">
-        <parameter name="aInput"/>
-        <parameter name="aElement"/>
-        <body>
-          <![CDATA[
-          // copy from superclass
-          // initially the panel is hidden
-          // to avoid impacting startup / new window performance
-          aInput.popup.hidden = false;
-
-          // this method is defined on the base binding
-          this._openAutocompletePopup(aInput, aElement);
-          var controller = aInput.controller;
-          if(controller.searchString === controller.getValueAt(0)) {
-            //this.selectedIndex = 0;
-          }
-        ]]>
-        </body>
-      </method>
-    </implementation>
   </binding>
 </bindings>
