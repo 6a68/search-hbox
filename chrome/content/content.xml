@@ -12,7 +12,30 @@
           Here are the description contents. Could we do stuff in here? Images?
         </xul:description>
       </xul:hbox>
-      <children/>
+      <xul:hbox>
+        <children/>
+      </xul:hbox>
     </content>
+    <implementation>
+      <method name="openAutocompletePopup">
+        <parameter name="aInput"/>
+        <parameter name="aElement"/>
+        <body>
+          <![CDATA[
+          // copy from superclass
+          // initially the panel is hidden
+          // to avoid impacting startup / new window performance
+          aInput.popup.hidden = false;
+
+          // this method is defined on the base binding
+          this._openAutocompletePopup(aInput, aElement);
+          var controller = aInput.controller;
+          if(controller.searchString === controller.getValueAt(0)) {
+            //this.selectedIndex = 0;
+          }
+        ]]>
+        </body>
+      </method>
+    </implementation>
   </binding>
 </bindings>
