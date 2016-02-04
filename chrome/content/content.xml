@@ -12,9 +12,6 @@
           Here are the description contents. Could we do stuff in here? Images?
         </xul:description>
       </xul:hbox>
-      <xul:hbox>
-        <children/>
-      </xul:hbox>
     </content>
     <implementation>
       <method name="openAutocompletePopup">
