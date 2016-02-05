@@ -4,6 +4,15 @@ Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 
 function loadIntoWindow(win) {
+  // load the CSS into the document. not using the stylesheet service.
+  const stylesheet = win.document.createElementNS('http://www.w3.org/1999/xhtml', 'h:link');
+  stylesheet.rel = 'stylesheet';
+  stylesheet.href = 'chrome://hboxy-root/content/skin/binding.css';
+  stylesheet.type = 'text/css';
+  stylesheet.style.display = 'none';
+  win.document.documentElement.appendChild(stylesheet);
+
+
   // 1. get a pointer to the popup
   const oldPopup = win.document.getElementById('PopupAutoCompleteRichResult')
 
