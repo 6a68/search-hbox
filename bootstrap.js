@@ -10,7 +10,7 @@ function loadIntoWindow(win) {
   // 2. create our popup
   const ns = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul';
   const popup = win.document.createElementNS(ns, 'panel');
-  popup.setAttribute('type', 'autocomplete-richlistbox');
+  popup.setAttribute('type', 'autocomplete');
   popup.setAttribute('id', 'HboxyPopupAutoCompleteRichResult');
   popup.setAttribute('noautofocus', 'true');
 
