@@ -22,7 +22,7 @@ function loadIntoWindow(win) {
   const ns = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul';
   popup = win.document.createElementNS(ns, 'panel');
   popup.setAttribute('type', 'autocomplete-richlistbox');
-  popup.setAttribute('id', 'HboxyPopupAutoCompleteRichResult');
+  popup.setAttribute('id', 'PopupAutoCompleteRichResult');
   popup.setAttribute('noautofocus', 'true');
   // we'll probably want a pointer to this later
   win.wut.popup = popup;
@@ -32,7 +32,7 @@ function loadIntoWindow(win) {
 
   // oh, and you need to tell the urlbar about our popup:
   const urlbar = win.gURLBar;
-  urlbar.setAttribute('autocompletepopup', 'HboxyPopupAutoCompleteRichResult');
+  urlbar.setAttribute('autocompletepopup', 'PopupAutoCompleteRichResult');
   // and then you have to pop the *urlbar* in and out of the DOM for the change
   // to be picked up correctly
   urlbar.parentNode.insertBefore(urlbar, urlbar.nextSibling);

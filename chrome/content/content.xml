@@ -4,15 +4,39 @@
           xmlns:html="http://www.w3.org/1999/xhtml"
           xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
           xmlns:xbl="http://www.mozilla.org/xbl">
-  <binding id="hboxy-urlbar-rich-result-popup" extends="chrome://browser/content/urlbarBindings.xml#urlbar-rich-result-popup">
-    <content ignorekeys="false" level="top" consumeoutsideclicks="false">
-      <xul:hbox anonid="ohai"
-                align="center">
+  <binding id="urlbar-rich-result-popup" extends="chrome://browser/content/urlbarBindings.xml#urlbar-rich-result-popup">
+
+    <content ignorekeys="true" level="top" consumeoutsideclicks="never"
+             aria-owns="richlistbox">
+      <xul:hbox anonid="search-suggestions-notification"
+                align="center"
+                role="alert"
+                aria-describedby="search-suggestions-notification-text">
         <xul:description flex="1">
-          Here are the description contents. Could we do stuff in here? Images?
+          Hmm, is it working? foo? bar? baz? ohai?
+          <xul:label id="search-suggestions-notification-learn-more"
+                     class="text-link"
+                     role="link"
+                     value="&urlbar.searchSuggestionsNotification.learnMore;"
+                     accesskey="&urlbar.searchSuggestionsNotification.learnMore.accesskey;"
+                     onclick="document.getBindingParent(this).openSearchSuggestionsNotificationLearnMoreURL();"
+                     control="search-suggestions-notification-learn-more"/>
         </xul:description>
+        <xul:button anonid="search-suggestions-notification-disable"
+                    label="&urlbar.searchSuggestionsNotification.disable;"
+                    accesskey="&urlbar.searchSuggestionsNotification.disable.accesskey;"
+                    onclick="document.getBindingParent(this).dismissSearchSuggestionsNotification(false);"/>
+        <xul:button anonid="search-suggestions-notification-enable"
+                    label="&urlbar.searchSuggestionsNotification.enable;"
+                    accesskey="&urlbar.searchSuggestionsNotification.enable.accesskey;"
+                    onclick="document.getBindingParent(this).dismissSearchSuggestionsNotification(true);"/>
       </xul:hbox>
-      <children/>
+      <xul:richlistbox anonid="richlistbox" class="autocomplete-richlistbox"
+                       flex="1"/>
+      <xul:hbox anonid="footer">
+        <children/>
+      </xul:hbox>
     </content>
   </binding>
 </bindings>
+
