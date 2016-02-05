@@ -45,7 +45,7 @@ function loadIntoWindow(win) {
       const item = win.document.createElementNS(XUL_NS, 'richlistitem');
       item.setAttribute('image', 'chrome://mozapps/skin/places/defaultFavicon.png');
       item.setAttribute('url', 'https://mozilla.com/');
-      item.setAttribute('title', 'THIS IS A RECOMMENDATION NODE, LOL WUT');
+      item.setAttribute('title', 'This looks better, but doesn\'t work properly');
       item.setAttribute('type', 'favicon'); // the style is a guess
       item.setAttribute('text', 'mozilla.com');
       item.className = 'autocomplete-richlistitem';

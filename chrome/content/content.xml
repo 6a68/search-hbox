@@ -9,7 +9,7 @@
              level="top"
              consumeoutsideclicks="never">
       <xul:hbox anonid="foomaster" style="text-align:left">
-        <xul:description id="foomazing">this is the hbox, but it's not in the scroll box, and figuring out key focus seems problematic.</xul:description>
+        <xul:description id="foomazing">this is the hbox. needs styling and focus adjustment.</xul:description>
       </xul:hbox>
       <xul:richlistbox anonid="richlistbox" class="autocomplete-richlistbox" flex="1"/>
       <children />
