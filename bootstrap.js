@@ -33,6 +33,10 @@ function loadIntoWindow(win) {
   // to force the binding to be applied.
   let popup = win.document.getElementById('PopupAutoCompleteRichResult')
   popup.parentElement.replaceChild(popup, popup);
+  // maybe you have to pop the *urlbar* in and out of the DOM for things
+  // to work properly? that was necessary before, when we swapped out the
+  // popup for ours.
+  win.gURLBar.parentNode.insertBefore(win.gURLBar, win.gURLBar.nextSibling);
   
   
   // 2. listen to the urlbar for keys
