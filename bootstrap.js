@@ -14,31 +14,28 @@ function loadIntoWindow(win) {
   if (typeof win.wut === 'undefined') {
     win.wut = {};
   }
-  /* all these steps should actually be handled by XBL for us, magically
-    // 1. get a pointer to the popup
-    let popup = win.document.getElementById('PopupAutoCompleteRichResult')
-    win.wut.popup = popup;
-    // 2. get a pointer to the anonymous content inside it
-    let results = win.document.getAnonymousElementByAttribute(popup, 'anonid', 'richlistbox');
-    // 3. create the hbox
-    const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
-    var boxy = win.document.createElementNS(XUL_NS, "hbox");
-    boxy.setAttribute("description", "we all, us three, will ride");
-    // 4. insert it between anonymous nodes?
-    results.insertBefore(boxy, results); // note, we insert it below the other hbox in real life
-  */
+  // 1. get a pointer to the popup
+  const oldPopup = win.document.getElementById('PopupAutoCompleteRichResult')
 
-  // it seems like XBL isn't getting applied.
-  // let's try pulling the node out of the DOM, then reinserting,
-  // to force the binding to be applied.
-  let popup = win.document.getElementById('PopupAutoCompleteRichResult')
-  popup.parentElement.replaceChild(popup, popup);
+  // 2. create our popup
+  let popup;
+  const ns = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul';
+  popup = win.document.createElementNS(ns, 'panel');
+  popup.setAttribute('type', 'autocomplete-richlistbox');
+  popup.setAttribute('id', 'HboxyPopupAutoCompleteRichResult');
+  popup.setAttribute('noautofocus', 'true');
+  // we'll probably want a pointer to this later
+  win.wut.popup = popup;
+
+  // 3. replace the old popup with our popup
+  oldPopup.parentElement.replaceChild(popup, oldPopup);
 
   // oh, and you need to tell the urlbar about our popup:
-  win.gURLBar.setAttribute('autocompletepopup', 'hboxy');
+  const urlbar = win.gURLBar;
+  urlbar.setAttribute('autocompletepopup', 'HboxyPopupAutoCompleteRichResult');
   // and then you have to pop the *urlbar* in and out of the DOM for the change
   // to be picked up correctly
-  win.gURLBar.parentNode.insertBefore(win.gURLBar, win.gURLBar.nextSibling);
+  urlbar.parentNode.insertBefore(urlbar, urlbar.nextSibling);
   
   
   // 2. listen to the urlbar for keys
@@ -49,7 +46,9 @@ function loadIntoWindow(win) {
   // 7. if no recommendation comes back, hide the node?
 }
 
-function unloadFromWindow(win) {}
+function unloadFromWindow(win) {
+  // URGENT TODO :-)
+}
 
 function onWindowLoaded(evt) {
   let win = evt.target.ownerGlobal;
