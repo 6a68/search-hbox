@@ -1,8 +1,6 @@
-/* wait, what if we just try to apply this binding to the element already in the DOM? */
-#PopupAutoCompleteRichResult {
+#HboxyPopupAutoCompleteRichResult {
   /* This odd CSS property connects an XBL file with XUL DOM.
    * See mdn.io/moz-binding for more.
    */
   -moz-binding: url("chrome://hboxy/content/content.xml#urlbar-rich-result-popup");
-
 }
