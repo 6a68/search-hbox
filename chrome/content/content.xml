@@ -8,34 +8,6 @@
 
     <content ignorekeys="true" level="top" consumeoutsideclicks="never"
              aria-owns="richlistbox">
-      <xul:hbox anonid="search-suggestions-notification"
-                align="center"
-                role="alert"
-                aria-describedby="search-suggestions-notification-text">
-        <xul:description flex="1">
-          Hmm, is it working? foo? bar? baz? ohai?
-          <xul:label id="search-suggestions-notification-learn-more"
-                     class="text-link"
-                     role="link"
-                     value="&urlbar.searchSuggestionsNotification.learnMore;"
-                     accesskey="&urlbar.searchSuggestionsNotification.learnMore.accesskey;"
-                     onclick="document.getBindingParent(this).openSearchSuggestionsNotificationLearnMoreURL();"
-                     control="search-suggestions-notification-learn-more"/>
-        </xul:description>
-        <xul:button anonid="search-suggestions-notification-disable"
-                    label="&urlbar.searchSuggestionsNotification.disable;"
-                    accesskey="&urlbar.searchSuggestionsNotification.disable.accesskey;"
-                    onclick="document.getBindingParent(this).dismissSearchSuggestionsNotification(false);"/>
-        <xul:button anonid="search-suggestions-notification-enable"
-                    label="&urlbar.searchSuggestionsNotification.enable;"
-                    accesskey="&urlbar.searchSuggestionsNotification.enable.accesskey;"
-                    onclick="document.getBindingParent(this).dismissSearchSuggestionsNotification(true);"/>
-      </xul:hbox>
-      <xul:richlistbox anonid="richlistbox" class="autocomplete-richlistbox"
-                       flex="1"/>
-      <xul:hbox anonid="footer">
-        <children/>
-      </xul:hbox>
     </content>
   </binding>
 </bindings>
