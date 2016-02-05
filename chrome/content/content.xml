@@ -5,8 +5,14 @@
           xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
           xmlns:xbl="http://www.mozilla.org/xbl">
   <binding id="hboxy-urlbar-rich-result-popup" extends="chrome://browser/content/urlbarBindings.xml#urlbar-rich-result-popup">
-    <content ignorekeys="true" level="top" consumeoutsideclicks="never"
-             aria-owns="richlistbox">
+    <content ignorekeys="true"
+             level="top"
+             consumeoutsideclicks="never">
+      <xul:hbox anonid="foomaster">
+        <xul:spacer flex="1"/>
+        <xul:description anonid="foomazing" value="this is the thing"></xul:description>
+      </xul:hbox>
+      <children />
     </content>
   </binding>
 </bindings>
