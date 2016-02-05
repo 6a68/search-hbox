@@ -8,6 +8,7 @@
     <content ignorekeys="true"
              level="top"
              consumeoutsideclicks="never">
+      <xul:richlistbox anonid="richlistbox" class="autocomplete-richlistbox" flex="1"/>
       <xul:hbox anonid="foomaster">
         <xul:spacer flex="1"/>
         <xul:description anonid="foomazing" value="this is the thing"></xul:description>
